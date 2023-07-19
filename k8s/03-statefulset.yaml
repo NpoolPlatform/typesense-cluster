@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: typesense
+  labels:
+    service: typesense
+    app: typesense
+spec:
+  serviceName: ts
+  podManagementPolicy: Parallel
+  # NOTE: This is number of nodes that we want to run
+  replicas: 3
+  selector:
+    matchLabels:
+      service: typesense
+      app: typesense
+  template:
+    metadata:
+      labels:
+        service: typesense
+        app: typesense
+    spec:
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 10000
+        runAsGroup: 3000
+        runAsNonRoot: true
+      terminationGracePeriodSeconds: 300
+      containers:
+      - name: typesense
+        image: typesense/typesense:0.22.1
+        env:
+          - name: TYPESENSE_API_KEY
+            value: "c5deba40-4214-469e-ba6b-5583e9e53e6b"
+        command:
+          - "/opt/typesense-server"
+          - "-d"
+          - "/usr/share/typesense/data"
+          # - "-a"
+          # - "MySuperstrongpassword#6876876578"
+          - "--api-port"
+          - "8108"
+          - "--peering-port"
+          - "8107"
+          - "--nodes"
+          - "/usr/share/typesense/nodes"
+          - "--api-key"
+          - "$(TYPESENSE_API_KEY)"
+          - "--enable-cors"
+        ports:
+        - containerPort: 8108
+          name: http
+        resources:
+          requests:
+            memory: 100Mi
+            cpu: "64m"
+          limits:
+            memory: 256Mi
+            cpu: "512m"
+        volumeMounts:
+        - name: nodeslist
+          mountPath: /usr/share/typesense
+        - name: typesense-data
+          mountPath: /usr/share/typesense/data
+      volumes:
+        - name: nodeslist
+          configMap:
+            name: typesense-configmap
+            items:
+            - key: nodes
+              path: nodes
+  volumeClaimTemplates:
+  - metadata:
+      name: typesense-data
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi

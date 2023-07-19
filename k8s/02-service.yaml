@@ -1,0 +1,26 @@
+# headless service used by cluster members to resolve ip's 
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts
+spec:
+  clusterIP: None
+  selector:
+    app: typesense
+  ports:
+  - name: http
+    port: 8108
+    targetPort: 8108
+---
+# This service is meant to route traffic to typesense
+apiVersion: v1
+kind: Service
+metadata:
+  name: typesense-svc
+spec:
+  selector:
+    app: typesense
+  ports:
+  - name: http
+    port: 8108
+    targetPort: 8108
