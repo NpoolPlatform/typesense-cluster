@@ -32,7 +32,10 @@ spec:
         image: typesense/typesense:0.22.1
         env:
           - name: TYPESENSE_API_KEY
-            value: "c5deba40-4214-469e-ba6b-5583e9e53e6b"
+            valueFrom:
+              secretKeyRef:
+                name: typesense-secret
+                key: apikey
         command:
           - "/opt/typesense-server"
           - "-d"
