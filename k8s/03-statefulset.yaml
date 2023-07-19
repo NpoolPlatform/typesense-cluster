@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: typesense
+  namespace: kube-system
   labels:
     service: typesense
     app: typesense

@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ts
+  namespace: kube-system
 spec:
   clusterIP: None
   selector:
@@ -17,6 +18,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: typesense-svc
+  namespace: kube-system
 spec:
   selector:
     app: typesense
