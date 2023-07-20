@@ -28,7 +28,7 @@ spec:
       terminationGracePeriodSeconds: 300
       containers:
       - name: typesense
-        image: typesense/typesense:0.22.1
+        image: typesense/typesense:0.25.0.rc48
         env:
           - name: TYPESENSE_API_KEY
             valueFrom:
@@ -45,6 +45,7 @@ spec:
           - "8107"
           - "--nodes"
           - "/usr/share/typesense/nodes"
+          - "--reset-peers-on-error"
           - "--api-key"
           - "$(TYPESENSE_API_KEY)"
           - "--enable-cors"
