@@ -9,7 +9,6 @@ metadata:
 spec:
   serviceName: ts
   podManagementPolicy: Parallel
-  # NOTE: This is number of nodes that we want to run
   replicas: 3
   selector:
     matchLabels:
@@ -40,8 +39,6 @@ spec:
           - "/opt/typesense-server"
           - "-d"
           - "/usr/share/typesense/data"
-          # - "-a"
-          # - "MySuperstrongpassword#6876876578"
           - "--api-port"
           - "8108"
           - "--peering-port"
@@ -81,4 +78,4 @@ spec:
         - ReadWriteOnce
       resources:
         requests:
-          storage: 10Gi
+          storage: 1Gi
