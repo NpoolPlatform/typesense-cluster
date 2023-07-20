@@ -5,4 +5,5 @@ metadata:
   namespace: kube-system
 data:
   nodes: "typesense-0.ts.kube-system.svc.cluster.local:8107:8108,typesense-1.ts.kube-system.svc.cluster.local:8107:8108,typesense-2.ts.kube-system.svc.cluster.local:8107:8108"
+  apikey: "c5deba40-4214-469e-ba6b-5583e9e53e6b"
 

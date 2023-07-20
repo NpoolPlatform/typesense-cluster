@@ -32,8 +32,8 @@ spec:
         env:
           - name: TYPESENSE_API_KEY
             valueFrom:
-              secretKeyRef:
-                name: typesense-secret
+              configMapKeyRef:
+                name: config
                 key: apikey
         command:
           - "/opt/typesense-server"
@@ -59,12 +59,12 @@ spec:
             memory: 256Mi
             cpu: "512m"
         volumeMounts:
-        - name: nodeslist
+        - name: config
           mountPath: /usr/share/typesense
         - name: typesense-data
           mountPath: /usr/share/typesense/data
       volumes:
-        - name: nodeslist
+        - name: config
           configMap:
             name: typesense-configmap
             items:
