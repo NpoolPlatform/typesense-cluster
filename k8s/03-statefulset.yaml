@@ -33,7 +33,7 @@ spec:
           - name: TYPESENSE_API_KEY
             valueFrom:
               configMapKeyRef:
-                name: config
+                name: typesense-configmap
                 key: apikey
         command:
           - "/opt/typesense-server"
