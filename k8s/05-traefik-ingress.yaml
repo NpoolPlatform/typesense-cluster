@@ -13,7 +13,7 @@ metadata:
       kube-system-strip-typesense-gateway-prefix@kubernetescrd,
       kube-system-http-redirect-https@kubernetescrd,
       kube-system-common-headers@kubernetescrd,
-      kube-system-headers-appid-to-body@kubernetescrd,
+      kube-system-headers-appid-to-body@kubernetescrd
 spec:
   rules:
     - host: api.npool.top
