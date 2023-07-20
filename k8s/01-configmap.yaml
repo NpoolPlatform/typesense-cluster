@@ -4,5 +4,5 @@ metadata:
   name: typesense-configmap
   namespace: kube-system
 data:
-  nodes: nodes: "typesense-0.ts.kube-system.svc.cluster.local:8107:8108,typesense-1.ts.kube-system.svc.cluster.local:8107:8108,typesense-2.ts.kube-system.svc.cluster.local:8107:8108"
+  nodes: "typesense-0.ts.kube-system.svc.cluster.local:8107:8108,typesense-1.ts.kube-system.svc.cluster.local:8107:8108,typesense-2.ts.kube-system.svc.cluster.local:8107:8108"
 
